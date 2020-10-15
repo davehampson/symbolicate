@@ -28,6 +28,7 @@ def Main():
     lines = open(options.callstack, 'rt').read().splitlines()
 
     regexpList = []
+    regexpList.append(re.compile(r'at lib[a-z]+\.0x((?:[0-9a-f]+))',        re.I)) # Match text like "at libunity.0x3c2ca4(Native Method)"
     regexpList.append(re.compile(r'at lib[a-z]+\.((?:[0-9a-f]+))',          re.I)) # Match text like "at libunity.003c2ca4(Native Method)"
     regexpList.append(re.compile(r'lib[a-z]+\.so\s+\+\s+0x((?:[0-9a-f]+))', re.I)) # Match text like "libunity.so + 0x396b3c"
     regexpList.append(re.compile(r'\s*#[0-9]+\s+pc\s+((?:[0-9a-f]+))',      re.I)) # Match text like "#03 pc 003d4530"
